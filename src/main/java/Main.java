@@ -26,11 +26,11 @@ public final class Main {
 //        oPersona.ifPresent(p -> log.debug("Persona from db: {}", p));
 
         Persona persona = Persona.builder()
-                .rut("19952130-6")
-                .nombre("Noah")
-                .apellidos("Faundez Velasco")
-                .email("noah.faundez@alumnos.ucn.cl")
-                .telefono("+56950954592")
+                .rut("123456789")
+                .nombre("Pinocho")
+                .apellidos("Fuentes")
+                .email("pinocho.fuentes@alumnos.ucn.cl")
+                .telefono("+56922233344")
                 .build();
 
         Contrato contrato = Contrato.builder()
@@ -65,5 +65,7 @@ public final class Main {
         db.save(persona);
         db.save(contrato);
         db.save(edificio);
+        System.out.println("Sistema");
+
     }
 }
