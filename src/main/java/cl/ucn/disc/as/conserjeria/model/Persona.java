@@ -4,9 +4,11 @@
 
 package cl.ucn.disc.as.conserjeria.model;
 
+import io.ebean.annotation.Cache;
 import io.ebean.annotation.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -14,8 +16,11 @@ import javax.persistence.Entity;
 /**
  * The Persona class.
  *
- * @author Diego Urrutia-Astorga.
+ * @author Noah Faúndez Velasco
  */
+@Cache(enableQueryCache = true, nearCache = true)
+
+@Getter
 @ToString(callSuper = true)
 @AllArgsConstructor
 @Builder

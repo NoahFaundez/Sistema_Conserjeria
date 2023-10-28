@@ -2,6 +2,7 @@ package cl.ucn.disc.as.conserjeria;
 
 import cl.ucn.disc.as.conserjeria.ui.ApiRestServer;
 import cl.ucn.disc.as.conserjeria.ui.WebController;
+import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -16,7 +17,16 @@ public final class Main {
      */
     public static void main(String[] args) {
         log.debug("Starting Main ..");
-        ApiRestServer.start(7070, new WebController());
+
+        log.debug("Library path: {}", System.getProperty("java.library.path"));
+
+        // Starting the API Rest server
+        Javalin app = ApiRestServer.start(7070, new WebController());
+
+        log.debug("Stopping ..");
+
+        app.stop();
+
         log.debug("Done. :)");
     }
 }

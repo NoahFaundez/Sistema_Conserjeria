@@ -2,16 +2,22 @@ package cl.ucn.disc.as.conserjeria.services;
 
 import cl.ucn.disc.as.conserjeria.model.*;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 import io.ebean.Database;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 
 public class SistemaImpl implements Sistema{
 
+    private Database database;
+
     public SistemaImpl(Database database)
     {
-
+        this.database = database;
     }
 
     /**
@@ -88,6 +94,43 @@ public class SistemaImpl implements Sistema{
     @Override
     public List<Persona> getPersonas() {
         return null;
+    }
+
+    /**
+     * Initialize
+     */
+    @Override
+    public void populate() {
+
+        // build the persona
+        {
+            Persona persona = Persona.builder()
+                    .rut("22012334-7")
+                    .nombre("Homero")
+                    .apellidos("Simpson")
+                    .email("hsimpson@ucn.cl")
+                    .telefono("+5622874512")
+                    .build();
+            this.database.save(persona);
+        }
+
+        // the faker
+        Locale locale = new Locale("es-CL");
+        FakeValuesService fvs = new FakeValuesService(locale, new RandomService());
+        Faker faker = new Faker(locale);
+
+        // faker
+        for (int i = 0; i < 1000; i++) {
+            Persona persona = Persona.builder()
+                    .rut(fvs.bothify("#######-#"))
+                    .nombre(faker.name().firstName())
+                    .apellidos(faker.name().lastName())
+                    .email(fvs.bothify("????##@gmail.com"))
+                    .telefono(fvs.bothify("+569########"))
+                    .build();
+            this.database.save(persona);
+        }
+
     }
 
     /**

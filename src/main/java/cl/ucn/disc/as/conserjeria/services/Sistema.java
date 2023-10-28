@@ -15,5 +15,6 @@ public interface Sistema {
     public Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
     public List<Contrato> getContratos();
     public List<Persona> getPersonas();
+    public void populate();
     public List<Pago> getPagos(String rut);
 }
