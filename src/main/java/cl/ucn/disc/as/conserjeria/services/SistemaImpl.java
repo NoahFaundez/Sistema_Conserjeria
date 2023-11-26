@@ -93,7 +93,12 @@ public class SistemaImpl implements Sistema{
      */
     @Override
     public List<Persona> getPersonas() {
-        return null;
+        List<Persona> personas =
+                database.find(Persona.class)
+                        .select("nombre")
+                        .findList();
+
+        return personas;
     }
 
     /**
