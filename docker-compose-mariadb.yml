@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  # Servicio para tu aplicación Java con el contenedor basado en OpenJDK 18
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Ajusta según sea necesario
+    depends_on:
+      - mariadb  # Dependemos del servicio MariaDB
+
+  # Servicio para la base de datos MariaDB
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Ajusta según sea necesario
+      MYSQL_DATABASE: your_database      # Ajusta según sea necesario
+      MYSQL_USER: your_username           # Ajusta según sea necesario
+      MYSQL_PASSWORD: your_password       # Ajusta según sea necesario
+    ports:
+      - "3306:3306"  # Puerto por defecto de MariaDB

@@ -10,6 +10,7 @@ import io.ebean.Database;
 import java.time.Instant;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class SistemaImpl implements Sistema{
 
@@ -99,6 +100,15 @@ public class SistemaImpl implements Sistema{
                         .findList();
 
         return personas;
+    }
+
+    @Override
+    public Optional getPersona(String rut) {
+        Persona persona = database.find(Persona.class)
+                .where().eq("rut", rut)
+                .findOne();
+
+        return Optional.ofNullable(persona);
     }
 
     /**

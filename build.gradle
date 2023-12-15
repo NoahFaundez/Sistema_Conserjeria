@@ -21,9 +21,9 @@ buildscript {
 plugins {
     id 'idea'
     id 'java'
-    id('io.ebean') version "${ebeanVersion}"
-    id('com.github.ben-manes.versions') version "${versionPluginVersion}"
-    id('com.google.protobuf') version "${protobufPluginVersion}"
+    id('io.ebean') version "13.25.1"
+    id('com.github.ben-manes.versions') version "0.50.0"
+    id('com.google.protobuf') version "0.9.4"
 }
 
 group = 'cl.ucn.disc.as'
@@ -113,7 +113,7 @@ dependencies {
 }
 
 ebean {
-    debugLevel = 9 //0 - 9
+    debugLevel = 9 // 0 - 9
 }
 
 test {

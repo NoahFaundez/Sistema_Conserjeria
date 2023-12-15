@@ -80,7 +80,7 @@ public final class ApiRestServer {
         JsonMapper jsonMapper = new JsonMapper() {
 
             // the gson serializer
-            private static final Gson GSON = createAndConfigureGson();
+            private final Gson GSON = createAndConfigureGson();
 
             /**
              * json to object
