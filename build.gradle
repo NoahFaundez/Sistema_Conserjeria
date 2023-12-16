@@ -59,6 +59,21 @@ java {
     }
 }
 
+jar {
+    duplicatesStrategy = 'exclude'
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes(
+                'Main-Class': 'cl.ucn.disc.as.conserjeria.Main'
+        )
+    }
+    dependsOn configurations.runtimeClasspath
+}
+
 compileJava {
     options.encoding = 'UTF-8'
 }
@@ -69,11 +84,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // lombok
-    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     // ebean
     testImplementation "io.ebean:ebean-test:${ebeanVersion}"
+    implementation "io.ebean:ebean-postgres:13.25.1"
 
     // ebean
     implementation "io.ebean:ebean:${ebeanVersion}"

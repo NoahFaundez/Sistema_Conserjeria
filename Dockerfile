@@ -18,4 +18,4 @@ RUN ./gradlew clean build
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["./gradlew", "run"]
+CMD ["java", "-jar", "build/libs/conserjeria-0.0.5.jar"]
